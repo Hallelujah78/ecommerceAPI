@@ -41,7 +41,6 @@ const reviewRouter = require("./routes/reviewRoutes");
 const orderRouter = require("./routes/orderRoutes");
 
 // logging middleware
-app.use(morgan("tiny"));
 
 // cookie middleware
 app.use(cookieParser(process.env.JWT_SECRET));
@@ -52,17 +51,6 @@ const notFoundMiddleware = require("./middleware/not-found");
 
 // file upload
 app.use(fileUpload());
-
-app.get("/", (req, res) => {
-  res.cookie("test", "test");
-  console.log(req.cookies);
-  res.send(`ecommerce API`);
-});
-
-app.get("/api/v1", (req, res) => {
-  console.log(req.signedCookies);
-  res.send(`ecommerce API`);
-});
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
